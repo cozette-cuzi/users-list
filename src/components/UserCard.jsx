@@ -13,33 +13,15 @@ import AlternateEmailIcon from "@mui/icons-material/AlternateEmail";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import { Delete, Edit, MoreVert } from "@mui/icons-material";
-import { useConfirm } from "material-ui-confirm";
 import { stringAvatar } from "../utils/misc";
+import useUserCard from "../hooks/useUserCard";
+
 const UserCard = (props) => {
   const { id, firstName, lastName, email, phone } = props.user;
-  const confirm = useConfirm();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const { anchorEl, handleClick, handleClose, handleDeleteUser } =
+    useUserCard(props);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-
-  const handleDeleteUser = (id) => {
-    confirm({ description: "Are you sure you want to delete this user?" })
-      .then(() => {
-        props.onDeleteUser(id);
-        props.showSnackbar("User Deleted!", "warning");
-
-      })
-      .catch(() => {
-        console.log("canceled");
-      });
-  };
   return (
     <>
       <Card sx={{ minWidth: 275, maxWidth: 400 }}>
@@ -60,7 +42,6 @@ const UserCard = (props) => {
               >
                 {`${firstName} ${lastName}`}
               </Typography>
-              
             </Stack>
             <Stack direction="row" justifyContent={"space-around"}>
               <div>

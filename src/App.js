@@ -108,15 +108,6 @@ function App() {
       <CssBaseline />
       <main className="App">
         <ConfirmProvider>
-          {/* <Box sx={{ flexGrow: 1 }}>
-            <AppBar color="secondary" position="static">
-              <Toolbar>
-                <img src={logo} height={35} />
-                <Typography> anything</Typography>
-              </Toolbar>
-            </AppBar>
-          </Box> */}
-
           <AppBar color="secondary" position="static">
             <Toolbar>
               <img src={themeSwitch? darkLogo: lightLogo} height={35} alt="Logo"/>

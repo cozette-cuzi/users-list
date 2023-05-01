@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import uniquid from "uniqid";
+import React from "react";
 import {
   TextField,
   Button,
@@ -9,52 +8,18 @@ import {
   DialogTitle,
   Box,
 } from "@mui/material";
-import {
-  capitalizeFirstLetter,
-  emptyUser,
-  userValid,
-  validateEmail,
-  validatePhone,
-} from "../utils/misc";
+import useForm from "../hooks/useForm";
 
 const Form = (props) => {
-  const [user, setUser] = useState(emptyUser);
-  const [editMode, setEditMode] = useState(false);
+  const {
+    user,
+    handleFormSubmission,
+    handleInputChange,
+    initialize,
+    validateEmail,
+    validatePhone,
+  } = useForm(props);
 
-  useEffect(() => {
-    if (props.currentUser.id !== undefined) {
-      setUser(props.currentUser);
-      setEditMode(true);
-    }
-  }, [props.currentUser]);
-
-  const handleFormSubmission = (event) => {
-    event.preventDefault();
-    if (userValid(user)) {
-      if (editMode) {
-        props.onEditUser(user);
-        props.showSnackbar("User Update Successfully!", "success");
-      } else {
-        user.id = uniquid("user-");
-        user.firstName = capitalizeFirstLetter(user.firstName);
-        user.lastName = capitalizeFirstLetter(user.lastName);
-        props.onAddUser(user);
-        props.showSnackbar("User Saved Successfully!", "success");
-      }
-      initialize();
-      console.log("user valid");
-    } else {
-      props.showSnackbar("Fields are not valid!", "error");
-      console.log("user not valid");
-    }
-  };
-
-  const initialize = () => {
-    setEditMode(false);
-    setUser(emptyUser);
-    props.handleClose();
-    console.log("closed");
-  };
   return (
     <div>
       <Dialog open={props.open} onClose={props.handleClose}>
@@ -75,9 +40,8 @@ const Form = (props) => {
                 label="First Name"
                 variant="outlined"
                 value={user.firstName}
-                onChange={(event) =>
-                  setUser({ ...user, firstName: event.target.value })
-                }
+                name="firstName"
+                onChange={handleInputChange}
               />
               <TextField
                 error={user.lastName.length !== 0 && user.lastName.length <= 2}
@@ -86,9 +50,9 @@ const Form = (props) => {
                 label="Last Name"
                 variant="outlined"
                 value={user.lastName}
-                onChange={(event) =>
-                  setUser({ ...user, lastName: event.target.value })
-                }
+                name="lastName"
+                onChange={handleInputChange}
+
               />
             </Box>
             <Box
@@ -107,9 +71,9 @@ const Form = (props) => {
                 type="email"
                 variant="outlined"
                 value={user.email}
-                onChange={(event) =>
-                  setUser({ ...user, email: event.target.value })
-                }
+                name="email"
+                onChange={handleInputChange}
+
               />
             </Box>
             <Box
@@ -127,9 +91,8 @@ const Form = (props) => {
                 label="Phone"
                 variant="outlined"
                 value={user.phone}
-                onChange={(event) =>
-                  setUser({ ...user, phone: event.target.value })
-                }
+                name="phone"
+                onChange={handleInputChange}
               />
             </Box>
           </DialogContent>
