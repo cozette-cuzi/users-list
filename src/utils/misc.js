@@ -1,3 +1,5 @@
+import { createTheme } from "@mui/material";
+
 function capitalizeFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
@@ -85,4 +87,24 @@ const emptyUser = {
   phone: "",
 };
 
-export { capitalizeFirstLetter, stringAvatar, userValid, emptyUser, validateEmail, validatePhone };
+let lightTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#2bc0c7",
+    },
+    secondary: {
+      main: "#fff",
+    },
+  },
+});
+
+const darkTheme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#2bc0c7",
+    },
+  }
+});
+
+export { capitalizeFirstLetter, stringAvatar, userValid, emptyUser, validateEmail, validatePhone, lightTheme, darkTheme };

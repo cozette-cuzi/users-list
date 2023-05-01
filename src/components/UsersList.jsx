@@ -22,7 +22,7 @@ const UsersList = (props) => {
           ))
         ) : (
           <div style={{ margin: 'auto' }} >
-            <img src={image} width={700} alt="No Data" />
+            <img src={image} style={{width: '100%', minWidth: '700px'}} alt="No Data" />
             <Typography variant="h4" color='primary'>Oops!! No Users Found</Typography>
           </div>
         )}

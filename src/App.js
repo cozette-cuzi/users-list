@@ -2,7 +2,6 @@ import "./App.css";
 import lightLogo from "./images/light-logo.png";
 import darkLogo from "./images/dark-logo.png";
 
-
 import React, { useEffect, useState } from "react";
 import UsersList from "./components/UsersList";
 import {
@@ -17,11 +16,10 @@ import {
   ThemeProvider,
   Toolbar,
   Typography,
-  createTheme,
 } from "@mui/material";
 import Form from "./components/Form";
 import { ConfirmProvider } from "material-ui-confirm";
-import { emptyUser } from "./utils/misc";
+import { darkTheme, emptyUser, lightTheme } from "./utils/misc";
 import { Add } from "@mui/icons-material";
 
 function App() {
@@ -81,36 +79,20 @@ function App() {
     setOpenSnackbar(false);
   };
 
-  let lightTheme = createTheme({
-    palette: {
-      primary: {
-        main: "#2bc0c7",
-      },
-      secondary: {
-        main: "#fff",
-      },
-    },
-  });
-
-  const darkTheme = createTheme({
-    palette: {
-      mode: "dark",
-      primary: {
-        main: "#2bc0c7",
-      },
-    }
-  });
-
   const [themeSwitch, setThemeSwitch] = useState(false);
 
   return (
-    <ThemeProvider theme={themeSwitch? darkTheme: lightTheme}>
+    <ThemeProvider theme={themeSwitch ? darkTheme : lightTheme}>
       <CssBaseline />
       <main className="App">
         <ConfirmProvider>
           <AppBar color="secondary" position="static">
             <Toolbar>
-              <img src={themeSwitch? darkLogo: lightLogo} height={35} alt="Logo"/>
+              <img
+                src={themeSwitch ? darkLogo : lightLogo}
+                height={35}
+                alt="Logo"
+              />
               <Typography
                 variant="h6"
                 component="div"
@@ -167,7 +149,7 @@ function App() {
               }}
               onClick={handleOpen}
             >
-              <Add style={{color: '#fff'}} />
+              <Add style={{ color: "#fff" }} />
             </Fab>
           </Container>
         </ConfirmProvider>
