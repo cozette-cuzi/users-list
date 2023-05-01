@@ -1,4 +1,5 @@
 # 4Industry Users List
+A project built with React and Material UI.
 
 ## Running the Project
 In the project directory, you can run:
