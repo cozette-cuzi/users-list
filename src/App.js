@@ -1,7 +1,4 @@
 import "./App.css";
-import lightLogo from "./images/light-logo.png";
-import darkLogo from "./images/dark-logo.png";
-
 import React, { useEffect, useState } from "react";
 import UsersList from "./components/UsersList";
 import {
@@ -21,7 +18,7 @@ import Form from "./components/Form";
 import { ConfirmProvider } from "material-ui-confirm";
 import { darkTheme, emptyUser, lightTheme } from "./utils/misc";
 import { Add } from "@mui/icons-material";
-
+import ChecklistIcon from '@mui/icons-material/Checklist';
 function App() {
   const list = localStorage.getItem("usersList")
     ? JSON.parse(localStorage.getItem("usersList"))
@@ -88,11 +85,7 @@ function App() {
         <ConfirmProvider>
           <AppBar color="secondary" position="static">
             <Toolbar>
-              <img
-                src={themeSwitch ? darkLogo : lightLogo}
-                height={35}
-                alt="Logo"
-              />
+              <ChecklistIcon style={{fontSize: '60px'}}/>
               <Typography
                 variant="h6"
                 component="div"
