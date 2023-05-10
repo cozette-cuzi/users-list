@@ -1,4 +1,4 @@
-# 4Industry Users List
+# Users List
 A project built with React and Material UI.
 
 ## Running the Project
